@@ -1,15 +1,21 @@
+"use client"
 // src/components/Header.jsx
-"use client";
-
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Header() {
-  const isAuthenticated = true; // replace with actual authentication check
-  const userRole = 'farmer'; // replace with actual role check
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check if a token exists in localStorage
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+  }, []);
 
   const handleLogout = () => {
-    // Handle logout
+    // Remove token from localStorage and update authentication status
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
   };
 
   return (
@@ -23,44 +29,33 @@ function Header() {
                 Home
               </Link>
             </li>
-            <li>
-              <Link href="/contracts" className="hover:text-secondary transition-colors duration-300 ease-in-out">
-                Contracts
-              </Link>
-            </li>
-            <li>
-              {isAuthenticated && userRole === 'farmer' ? (
-                <Link href="/farmers/dashboard" className="hover:text-secondary transition-colors duration-300 ease-in-out">
-                  Farmer Dashboard
-                </Link>
-              ) : null}
-            </li>
-            <li>
-              {isAuthenticated && userRole === 'buyer' ? (
-                <Link href="/buyers/dashboard" className="hover:text-secondary transition-colors duration-300 ease-in-out">
-                  Buyer Dashboard
-                </Link>
-              ) : null}
-            </li>
-            <li>
-              {isAuthenticated ? (
-                <button
-                  onClick={handleLogout}
-                  className="hover:text-secondary transition-colors duration-300 ease-in-out"
-                >
-                  Logout
-                </button>
-              ) : (
-                <>
-                  <Link href="/buyers/login" className="hover:text-secondary transition-colors duration-300 ease-in-out">
-                    Buyer Login
+            {isAuthenticated ? (
+              <>
+                <li>
+                  <Link href="/farmer-profile" className="hover:text-secondary transition-colors duration-300 ease-in-out">
+                    Farmer Profile
                   </Link>
-                  <Link href="/farmers/login" className="hover:text-secondary transition-colors duration-300 ease-in-out">
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="hover:text-secondary transition-colors duration-300 ease-in-out">
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link href="/farmers/signin" className="hover:text-secondary transition-colors duration-300 ease-in-out">
                     Farmer Login
                   </Link>
-                </>
-              )}
-            </li>
+                </li>
+                <li>
+                  <Link href="/buyers/signin" className="hover:text-secondary transition-colors duration-300 ease-in-out">
+                    Buyer Login
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>

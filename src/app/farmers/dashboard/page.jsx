@@ -1,34 +1,9 @@
+// src/app/farmers/dashboard/page.jsx
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
 const FarmerDashboard = () => {
-  const [contracts, setContracts] = useState([]);
-  const [farmStats, setFarmStats] = useState({});
-  const [farmerName, setFarmerName] = useState('');
-
-  // Fetch data when the component mounts
-  useEffect(() => {
-    // Replace with your API endpoint to fetch contracts and farm stats
-    const fetchData = async () => {
-      try {
-        const [contractsResponse, statsResponse, profileResponse] = await Promise.all([
-          axios.get('/api/farmers/contracts'), // Update with your actual endpoint
-          axios.get('/api/farmers/stats'), // Update with your actual endpoint
-          axios.get('/api/farmers/profile'), // Update with your actual endpoint
-        ]);
-        setContracts(contractsResponse.data);
-        setFarmStats(statsResponse.data);
-        setFarmerName(profileResponse.data.name);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <div className="bg-green-600 text-white p-4">
@@ -63,33 +38,24 @@ const FarmerDashboard = () => {
           </nav>
         </aside>
         <main className="flex-1 p-6">
-          <h2 className="text-xl font-semibold mb-4">Welcome, {farmerName}!</h2>
+          <h2 className="text-xl font-semibold mb-4">Welcome, [Farmer Name]!</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white shadow-md rounded-lg p-4">
               <h3 className="text-lg font-semibold mb-2">Current Contracts</h3>
               <p>View and manage your current contracts here.</p>
-              <ul>
-                {contracts.length > 0 ? (
-                  contracts.map((contract) => (
-                    <li key={contract.id} className="mb-2">
-                      <p>{contract.title}</p>
-                      <p>{contract.description}</p>
-                    </li>
-                  ))
-                ) : (
-                  <p>No contracts found.</p>
-                )}
-              </ul>
+              {/* Display a list or table of contracts */}
             </div>
             <div className="bg-white shadow-md rounded-lg p-4">
               <h3 className="text-lg font-semibold mb-2">Farm Statistics</h3>
               <p>View your farm statistics and performance metrics here.</p>
               {/* Display charts or stats */}
-              <pre>{JSON.stringify(farmStats, null, 2)}</pre>
             </div>
           </div>
         </main>
       </div>
+      <footer className="bg-green-600 text-white text-center p-4">
+        &copy; 2024 Contract Farming Platform. All rights reserved.
+      </footer>
     </div>
   );
 };
