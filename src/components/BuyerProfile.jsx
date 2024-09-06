@@ -1,9 +1,11 @@
-// src/components/BuyerProfile.jsx
+"use client"
+// src/pages/buyer-profile.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+
 function BuyerProfile() {
-  const [profile, setProfile] = useState({ name: '', email: '', contracts: [] }); // Initialize with default values
+  const [profile, setProfile] = useState({ name: '', email: '', contracts: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -56,12 +58,12 @@ function BuyerProfile() {
           )}
         </div>
       )}
-<Link
-  to="/create-contract"
-  className="bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition"
->
-  Create New Contract
-</Link>
+      <Link
+        href="/create-contract"
+        className="bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition"
+      >
+        Create New Contract
+      </Link>
     </div>
   );
 }

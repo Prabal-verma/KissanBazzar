@@ -1,6 +1,6 @@
-// src/components/FarmerProfile.js
+// src/pages/farmer-profile.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function FarmerProfile() {
   return (
@@ -22,12 +22,12 @@ function FarmerProfile() {
               <p className="text-lg text-text mb-4">Location: Springfield, IL</p>
               <p className="text-lg text-text mb-4">Farm Size: 50 acres</p>
               <p className="text-lg text-text mb-4">Crops: Corn, Soybeans, Wheat</p>
-              <a 
-                href="/edit-profile" 
+              <Link 
+                href="/edit-profile"
                 className="bg-primary text-white py-2 px-4 rounded-lg shadow-lg hover:bg-secondary transition-colors duration-300"
               >
                 Edit Profile
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -53,14 +53,13 @@ function FarmerProfile() {
           </ul>
         </div>
       </section>
-      <Link
-  to="/manage-contracts"
-  className="bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition"
->
-  Manage Contracts
-</Link>
+      <Link 
+        href="/manage-contracts"
+        className="bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition"
+      >
+        Manage Contracts
+      </Link>
     </div>
-    
   );
 }
 

@@ -1,3 +1,4 @@
+"use client"
 // src/components/CreateContract.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
