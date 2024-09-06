@@ -25,7 +25,7 @@ const SignInPage = () => {
       localStorage.setItem('token', response.data.token);
 
       // Redirect to the dashboard or any other page
-      router.push('/dashboard');
+      router.push('/farmers/dashboard');
     } catch (error) {
       setError(error.response?.data?.message || 'Error signing in');
     }
