@@ -15,6 +15,22 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+/* Global input styles */
+input, textarea {
+  color: #000; /* Sets text color to black */
+  background-color: #fff; /* Sets background color to white */
+  border: 1px solid #ccc; /* Adds a border for visibility */
+  padding: 8px; /* Adds padding for better UX */
+  outline: none; /* Removes default focus outline */
+  border-radius: 4px; /* Adds rounded corners */
+}
+
+/* Focus state for inputs */
+input:focus, textarea:focus {
+  border-color: #4CAF50; /* Changes border color on focus */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Adds a subtle shadow effect */
+}
+
 
 body {
   color: rgb(var(--foreground-rgb));
