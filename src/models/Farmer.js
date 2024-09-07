@@ -22,7 +22,15 @@ const FarmerSchema = new mongoose.Schema({
     type: String,
   },
   farmDetails: {
-    type: String,
+    location: {
+      type: String,
+    },
+    size: {
+      type: Number,
+    },
+    cropTypes: {
+      type: String,
+    },
   },
 });
 
