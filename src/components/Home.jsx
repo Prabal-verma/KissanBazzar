@@ -61,7 +61,7 @@ function Home() {
         <h2 className="text-3xl font-semibold text-text mb-6 text-center">What Our Users Say</h2>
         <div className="space-y-6">
           <blockquote className="bg-white p-6 rounded-lg shadow-md border border-border">
-            <p className="text-gray-700 italic">“This platform has revolutionized the way we handle contracts and payments. It's secure and easy to use!”</p>
+            <p className="text-gray-700 italic">“This platform has revolutionized the way we handle contracts and payments. It&apos;s secure and easy to use!”</p>
             <footer className="mt-4 text-right text-gray-500">— Alex, Farmer</footer>
           </blockquote>
           <blockquote className="bg-white p-6 rounded-lg shadow-md border border-border">
