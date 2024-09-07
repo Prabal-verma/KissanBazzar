@@ -37,80 +37,82 @@ function Header() {
   };
 
   return (
-    <header className="bg-primary text-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center p-4 md:p-6 lg:p-8">
-        <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
-          Contract Farming Platform
-        </h1>
-        <nav>
-          <ul className="flex space-x-6 text-lg font-medium">
-            {isAuthenticated ? (
-              <>
-                <li>
-                  <Link
-                    href="/farmers/dashboard"
-                    className="hover:text-secondary transition-colors duration-300 ease-in-out"
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/farmers/profile"
-                    className="hover:text-secondary transition-colors duration-300 ease-in-out"
-                  >
-                    Farmer Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contracts"
-                    className="hover:text-secondary transition-colors duration-300 ease-in-out"
-                  >
-                    My Contracts
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/settings"
-                    className="hover:text-secondary transition-colors duration-300 ease-in-out"
-                  >
-                    Settings
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    onClick={handleLogout}
-                    className="hover:text-secondary transition-colors duration-300 ease-in-out"
-                  >
-                    Logout
-                  </button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link
-                    href="/farmers/signin"
-                    className="hover:text-secondary transition-colors duration-300 ease-in-out"
-                  >
-                    Farmer Login
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/buyers/signin"
-                    className="hover:text-secondary transition-colors duration-300 ease-in-out"
-                  >
-                    Buyer Login
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <header className="bg-gradient-to-r from-blue-500 via-primary to-green-500 text-white shadow-lg sticky top-0 bg-opacity-80 backdrop-blur-md transition-all duration-300 z-50">
+  <div className="container mx-auto flex justify-between items-center p-4 md:p-6 lg:p-8">
+    <Link href="/">
+    <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight transform hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer">
+      Contract Farming Platform
+    </h1> </Link>
+    <nav>
+      <ul className="flex space-x-6 text-lg font-medium">
+        {isAuthenticated ? (
+          <>
+            <li>
+              <Link
+                href="/farmers/dashboard"
+                className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+              >
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/farmers/profile"
+                className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+              >
+                Farmer Profile
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contracts"
+                className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+              >
+                My Contracts
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/settings"
+                className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+              >
+                Settings
+              </Link>
+            </li>
+            <li>
+              <button
+                onClick={handleLogout}
+                className="hover:text-yellow-300 hover:scale-105 transition-all duration-300 ease-in-out"
+              >
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link
+                href="/farmers/signin"
+                className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+              >
+                Farmer Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/buyers/signin"
+                className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+              >
+                Buyer Login
+              </Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </nav>
+  </div>
+</header>
+
   );
 }
 

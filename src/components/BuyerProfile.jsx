@@ -1,11 +1,13 @@
-"use client"
 // src/pages/buyer-profile.js
+"use client";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import Image from 'next/image';
+import { TailSpin } from 'react-loader-spinner'; // Spinner loader
 
 function BuyerProfile() {
-  const [profile, setProfile] = useState({ name: '', email: '', contracts: [] });
+  const [profile, setProfile] = useState({ name: '', email: '', contracts: [], image: '/default-profile.png' });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -41,53 +43,80 @@ function BuyerProfile() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex bg-white justify-center items-center min-h-screen">
+        <TailSpin
+          height={60}
+          width={60}
+          color="gray"
+          ariaLabel="loading-spinner"
+        />
+      </div>
+    );
   }
 
   if (error) {
     return <p className="text-red-500">{error}</p>;
   }
-    
 
   return (
-    <div className="min-h-screen bg-background p-6 flex flex-col items-center">
-      <h1 className="text-4xl font-bold text-text mb-8">Buyer Profile</h1>
+    <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
+      <h1 className="text-4xl font-bold text-gray-800 mb-8">Buyer Profile</h1>
 
-      {loading ? (
-        <p className="text-lg text-primary">Loading profile...</p>
-      ) : error ? (
-        <p className="text-lg text-red-600">{error}</p>
-      ) : (
-        <div className="w-full max-w-2xl bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-primary mb-4">Profile Details</h2>
-          <p className="text-lg text-text mb-2"><strong>Name:</strong> {profile?.name || 'N/A'}</p>
-          <p className="text-lg text-text mb-2"><strong>Email:</strong> {profile?.email || 'N/A'}</p>
-          <p className="text-lg text-text mb-2"><strong>Contact:</strong> {profile?.contactNumber || 'N/A'}</p>
-          <p className="text-lg text-text mb-2"><strong>Address:</strong> {profile?.address || 'N/A'}</p>
-          <Link 
-                href="/buyers/edit-profile"
-                className="bg-primary text-white py-2 px-4 rounded-lg shadow-lg hover:bg-secondary transition-colors duration-300"
-              >
-                Edit Profile
-              </Link>
-
-          <h3 className="text-xl font-semibold text-primary mt-6 mb-4">Contracts</h3>
-          {profile.contracts && profile.contracts.length > 0 ? (
-            <ul className="space-y-2">
-              {profile.contracts.map((contract, index) => (
-                <li key={index} className="border border-border p-3 rounded-md">
-                  {contract.title || 'Contract Title'} - {contract.status || 'Pending'}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-lg text-gray-700">No contracts found.</p>
-          )}
+      <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg transition-transform hover:scale-105 duration-300 ease-in-out">
+        {/* Profile Image Section */}
+        <div className="flex items-center space-x-6 mb-6">
+          <Image
+            src={profile.image || '/defaultProfile.webp'}
+            alt="Profile Image" height={65} width={65}
+            className="w-32 h-32 object-cover rounded-full shadow-md border-4 border-indigo-600"
+          />
+          <div>
+            <h2 className="text-2xl font-semibold text-indigo-600">{profile?.name || 'N/A'}</h2>
+            <p className="text-lg text-gray-600">{profile?.email || 'N/A'}</p>
+          </div>
         </div>
-      )}
+
+        {/* Profile Details */}
+        <div className="space-y-2">
+          <div className="flex gap-5">
+            <p className="text-lg text-gray-800"><strong>Contact:</strong></p>
+            <p className="text-lg text-gray-800">{profile?.contactNumber || 'N/A'}</p>
+          </div>
+          <div className="flex gap-2">
+            <p className="text-lg text-gray-800"><strong>Address:</strong></p>
+            <p className="text-lg text-gray-800">{profile?.address || 'N/A'}</p>
+          </div>
+        </div>
+
+        <Link 
+          href="/buyers/edit-profile"
+          className="mt-6 bg-green-600 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-65 block text-center"
+        >
+          Edit Profile
+        </Link>
+
+        {/* Contracts Section */}
+        <h3 className="text-xl font-semibold text-indigo-600 mt-8 mb-4">Contracts</h3>
+        {profile.contracts && profile.contracts.length > 0 ? (
+          <ul className="space-y-2">
+            {profile.contracts.map((contract, index) => (
+              <li 
+                key={index} 
+                className="border border-gray-300 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                {contract.title || 'Contract Title'} - {contract.status || 'Pending'}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-lg text-gray-700">No contracts found.</p>
+        )}
+      </div>
+
       <Link
         href="/create-contract"
-        className="bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition"
+        className="mt-6 bg-indigo-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-indigo-700 transition-transform duration-300 ease-in-out transform hover:scale-105"
       >
         Create New Contract
       </Link>

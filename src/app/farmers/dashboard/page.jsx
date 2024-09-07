@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import { TailSpin } from 'react-loader-spinner'; // Spinner loader
 
 const FarmerDashboard = () => {
   const [farmer, setFarmer] = useState(null);
@@ -34,7 +35,14 @@ const FarmerDashboard = () => {
   }, []);
 
   if (loading) {
-    return <p className="text-gray-700">Loading...</p>;
+    return <div className="flex bg-white justify-center items-center min-h-screen">
+    <TailSpin
+      height={60}
+      width={60}
+      color="gray"
+      ariaLabel="loading-spinner"
+    />
+    </div>;
   }
 
   if (error) {
