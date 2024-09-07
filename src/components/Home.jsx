@@ -1,8 +1,42 @@
-// src/pages/index.js
-import React from 'react';
+'use client';
+
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+
 function Home() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState(null); // Track user role (farmer/buyer)
+  const router = useRouter();
+
+
+  useEffect(() => {
+    // Function to check authentication status and user role
+    const checkAuthStatus = () => {
+      const token = localStorage.getItem('token');
+      const role = localStorage.getItem('role'); // Assuming role is stored in localStorage
+      setIsAuthenticated(!!token);
+      setUserRole(role);
+    };
+
+
+    // Check auth status on component mount
+    checkAuthStatus();
+
+
+    // Redirect if authenticated
+    if (isAuthenticated && userRole) {
+      if (userRole === 'farmer') {
+        router.push('/farmers/profile');
+      } else if (userRole === 'buyer') {
+        router.push('/buyers/profile');
+      }
+    }
+  }, [isAuthenticated, userRole, router]);
+
+
   return (
     <div className="min-h-screen bg-background flex flex-col items-center py-8 px-4">
       {/* Hero Section */}
@@ -11,12 +45,15 @@ function Home() {
         <p className="text-lg md:text-xl text-text mb-8">
           Connecting farmers and buyers to ensure stable market access and fair trade practices.
         </p>
-        <Link href="/get-started">
-          <button className="bg-primary text-white py-3 px-6 rounded-lg shadow-lg hover:bg-secondary transition-colors duration-300">
-            Get Started
-          </button>
-        </Link>
+        {!isAuthenticated && (
+          <Link href="/get-started">
+            <button className="bg-primary text-white py-3 px-6 rounded-lg shadow-lg hover:bg-secondary transition-colors duration-300">
+              Get Started
+            </button>
+          </Link>
+        )}
       </section>
+
 
       {/* Features Section */}
       <section className="w-full max-w-6xl mx-auto mb-12 px-4">
@@ -37,51 +74,28 @@ function Home() {
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section className="bg-gray-100 w-full max-w-6xl mx-auto p-6 rounded-lg shadow-md mb-12">
-        <h2 className="text-3xl font-semibold text-text mb-6 text-center">Platform Impact</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-2">500+</h3>
-            <p className="text-gray-700">Farmers Connected</p>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-2">1000+</h3>
-            <p className="text-gray-700">Successful Contracts</p>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-2">95%</h3>
-            <p className="text-gray-700">User Satisfaction</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Testimonials Section */}
+      {/* Benefits Section */}
       <section className="w-full max-w-4xl mx-auto mb-12 px-4">
-        <h2 className="text-3xl font-semibold text-text mb-6 text-center">What Our Users Say</h2>
+        <h2 className="text-3xl font-semibold text-text mb-6 text-center">Why Choose Us?</h2>
         <div className="space-y-6">
-          <blockquote className="bg-white p-6 rounded-lg shadow-md border border-border">
-            <p className="text-gray-700 italic">“This platform has revolutionized the way we handle contracts and payments. It&apos;s secure and easy to use!”</p>
-            <footer className="mt-4 text-right text-gray-500">— Alex, Farmer</footer>
-          </blockquote>
-          <blockquote className="bg-white p-6 rounded-lg shadow-md border border-border">
-            <p className="text-gray-700 italic">“A fantastic tool for managing agricultural contracts. Highly recommend to both farmers and buyers.”</p>
-            <footer className="mt-4 text-right text-gray-500">— Jamie, Buyer</footer>
-          </blockquote>
+          <div className="bg-white p-6 rounded-lg shadow-md border border-border">
+            <h3 className="text-xl font-semibold text-primary mb-4">Secure and Reliable</h3>
+            <p className="text-gray-700">Our platform ensures secure transactions and reliable contract management.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md border border-border">
+            <h3 className="text-xl font-semibold text-primary mb-4">Easy to Use</h3>
+            <p className="text-gray-700">User-friendly interface designed to simplify the process of managing contracts and payments.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md border border-border">
+            <h3 className="text-xl font-semibold text-primary mb-4">24/7 Support</h3>
+            <p className="text-gray-700">Get help anytime with our dedicated support team available around the clock.</p>
+          </div>
         </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section className="text-center px-4 mb-8">
-        <h2 className="text-3xl font-semibold text-text mb-6">Ready to Get Started?</h2>
-        <Link href="/get-started">
-          <button className="bg-primary text-white py-3 px-6 rounded-lg shadow-lg hover:bg-secondary transition-colors duration-300">
-            Join Now
-          </button>
-        </Link>
       </section>
     </div>
   );
 }
+
 
 export default Home;
