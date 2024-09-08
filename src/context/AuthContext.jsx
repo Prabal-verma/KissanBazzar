@@ -13,24 +13,27 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     const type = localStorage.getItem('userType');
-    setIsAuthenticated(!!token);
     setUserType(type || '');
-  }, []);
+    setIsAuthenticated(!!token);
+    
+  }, [userType]);
 
 // src/context/AuthContext.jsx
 const login = (token, type) => {
   localStorage.setItem('token', token);
   localStorage.setItem('userType', type);
-  setIsAuthenticated(true);
   setUserType(type);
+  setIsAuthenticated(true);
+  
 };
 
 
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userType');
-    setIsAuthenticated(false);
     setUserType('');
+    setIsAuthenticated(false);
+    
   };
 
   return (

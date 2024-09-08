@@ -2,11 +2,81 @@
 'use client';
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 function Header() {
   const { isAuthenticated, userType, logout } = useAuth();
+  const [currentUserType, setCurrentUserType] = useState(userType);
+
+  useEffect(() => {
+    // Update local state when userType changes
+    setCurrentUserType(userType);
+  }, [userType]);
+
+  const renderUserLinks = () => {
+    if (currentUserType === 'farmer') {
+      return (
+        <>
+          <li>
+            <Link
+              href="/farmers/dashboard"
+              className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/farmers/profile"
+              className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+            >
+              Farmer Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contracts"
+              className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+            >
+              My Contracts
+            </Link>
+          </li>
+        </>
+      );
+    }
+    if (currentUserType === 'buyer') {
+      return (
+        <>
+          <li>
+            <Link
+              href="/buyers/dashboard"
+              className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/buyers/profile"
+              className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+            >
+              Buyer Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/buyers/markets"
+              className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
+            >
+              Market
+            </Link>
+          </li>
+        </>
+      );
+    }
+    return null;
+  };
 
   return (
     <header className="bg-gradient-to-r from-blue-500 via-primary to-green-500 text-white shadow-lg sticky top-0 bg-opacity-80 backdrop-blur-md transition-all duration-300 z-50">
@@ -20,62 +90,7 @@ function Header() {
           <ul className="flex space-x-6 text-lg font-medium">
             {isAuthenticated ? (
               <>
-                {userType === 'farmer' && (
-                  <>
-                    <li>
-                      <Link
-                        href="/farmers/dashboard"
-                        className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/farmers/profile"
-                        className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
-                      >
-                        Farmer Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/contracts"
-                        className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
-                      >
-                        My Contracts
-                      </Link>
-                    </li>
-                  </>
-                )}
-                {userType === 'buyer' && (
-                  <>
-                    <li>
-                      <Link
-                        href="/buyers/dashboard"
-                        className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/buyers/profile"
-                        className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
-                      >
-                        Buyer Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/contracts"
-                        className="hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
-                      >
-                        My Contracts
-                      </Link>
-                    </li>
-                  </>
-                )}
+                {renderUserLinks()}
                 <li>
                   <Link
                     href="/settings"
