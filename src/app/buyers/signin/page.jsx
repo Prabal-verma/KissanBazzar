@@ -22,6 +22,8 @@ const SignInBuyer = () => {
 
       // Store the token (e.g., in local storage)
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userType', 'buyer'); // Set user type to 'buyer'
+
 
       // Redirect to the dashboard or any other page
       router.push('/buyers/dashboard');
