@@ -6,15 +6,13 @@ import Link from 'next/link';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel CSS
 
-const NEWS_API_KEY = 'bbdfdd5ccd9448899bc9bb400f7075af'; // Replace with your actual API key
-const AGRICULTURE_NEWS_API_URL = `https://newsapi.org/v2/everything?q=agriculture&apiKey=${NEWS_API_KEY}`;
+const NEWS_API_KEY = 'bbdfdd5ccd9448899bc9bb400f7075af'; // Your API key
+const NEWS_API_URL = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${NEWS_API_KEY}`;
 
 function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null); // Track user role (farmer/buyer)
   const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -40,25 +38,18 @@ function Home() {
   }, [isAuthenticated, userRole, router]);
 
   useEffect(() => {
-    // Fetch agriculture news
+    // Fetch news articles from the API
     const fetchNews = async () => {
       try {
-        const response = await fetch(AGRICULTURE_NEWS_API_URL);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        const response = await fetch(NEWS_API_URL);
         const data = await response.json();
-        if (data && data.articles) {
+        if (data.status === 'ok') {
           setNews(data.articles);
         } else {
-          console.error('Unexpected API response structure:', data);
-          setError('Unexpected API response structure');
+          console.error('Failed to fetch news:', data.message);
         }
       } catch (error) {
         console.error('Error fetching news:', error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -68,26 +59,20 @@ function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center py-8 bg-gray-100">
       {/* Hero Section with Carousel and News Sections */}
-      <section className="relative w-full max-w-screen-xl mx-auto flex flex-col md:flex-row gap-4">
+      <section className="relative w-full max-w-screen-xl mx-auto flex flex-col md:flex-row gap-8">
         {/* Left News Section */}
         <div className="w-full md:w-1/4 bg-gradient-to-b from-blue-50 to-blue-100 p-4 rounded-lg shadow-lg">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Latest Farmer News</h2>
-          {loading ? (
-            <p className="text-gray-600">Loading...</p>
-          ) : error ? (
-            <p className="text-red-600">{error}</p>
-          ) : (
-            <ul className="space-y-4">
-              {news.slice(0, 2).map((article, index) => (
-                <li key={index} className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
-                  <a href={article.url} target="_blank" rel="noopener noreferrer" className="block text-blue-600 hover:underline text-lg font-semibold mb-2">
-                    {article.title}
-                  </a>
-                  <p className="text-gray-600 text-sm">{article.description}</p>
-                </li>
-              ))}
-            </ul>
-          )}
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">Latest News</h2>
+          <div className="space-y-4">
+            {news.slice(0, 2).map((article, index) => (
+              <div key={index} className="bg-white p-4 rounded-lg shadow-md">
+                <img src={article.urlToImage} alt={article.title} className="w-full h-32 object-cover mb-2 rounded" />
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">{article.title}</h3>
+                <p className="text-gray-700 mb-2">{article.description}</p>
+                <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Read more</a>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Carousel */}
@@ -120,23 +105,17 @@ function Home() {
 
         {/* Right News Section */}
         <div className="w-full md:w-1/4 bg-gradient-to-b from-purple-50 to-purple-100 p-4 rounded-lg shadow-lg">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Latest Market News</h2>
-          {loading ? (
-            <p className="text-gray-600">Loading...</p>
-          ) : error ? (
-            <p className="text-red-600">{error}</p>
-          ) : (
-            <ul className="space-y-4">
-              {news.slice(2, 4).map((article, index) => (
-                <li key={index} className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
-                  <a href={article.url} target="_blank" rel="noopener noreferrer" className="block text-blue-600 hover:underline text-lg font-semibold mb-2">
-                    {article.title}
-                  </a>
-                  <p className="text-gray-600 text-sm">{article.description}</p>
-                </li>
-              ))}
-            </ul>
-          )}
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">More News</h2>
+          <div className="space-y-4">
+            {news.slice(2, 4).map((article, index) => (
+              <div key={index} className="bg-white p-4 rounded-lg shadow-md">
+                <img src={article.urlToImage} alt={article.title} className="w-full h-32 object-cover mb-2 rounded" />
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">{article.title}</h3>
+                <p className="text-gray-700 mb-2">{article.description}</p>
+                <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Read more</a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -181,7 +160,7 @@ function Home() {
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Ready to Get Started?</h2>
         <Link href="/get-started">
           <button className="bg-gradient-to-r from-teal-500 to-green-500 text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-80 transition-opacity duration-300">
-            Join Now
+            Join Us Today
           </button>
         </Link>
       </section>
