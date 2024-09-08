@@ -8,7 +8,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carous
 function Home() {
   return (
     
-    <div className="min-h-screen  flex flex-col items-center py-8 px-0 bg-gradient-to-r from-blue-500 via-primary to-green-500">
+    <div className="min-h-screen  flex flex-col items-center py-8 px-0 bg-gradient-to-r from-blue-500 via-primary to-green-500 top-0 ">
 
         {/* Farmer Images Carousel */}
         <section className="w-full h-[24vh] mx-[-60px] mt-[-50px] p-0 object-cover  bg-transparent opacity-80 ">
