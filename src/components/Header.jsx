@@ -1,45 +1,12 @@
+// src/components/Header.jsx
 'use client';
 
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useAuth } from '../context/AuthContext';
 
 function Header() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userType, setUserType] = useState('');
-
-  useEffect(() => {
-    // Function to update authentication status and user type
-    const checkAuthStatus = () => {
-      const token = localStorage.getItem('token');
-      const type = localStorage.getItem('userType');
-      setIsAuthenticated(!!token);
-      setUserType(type || '');
-    };
-
-    // Check auth status on component mount
-    checkAuthStatus();
-
-    // Set up listener for localStorage changes in other tabs
-    const handleStorageChange = (event) => {
-      if (event.key === 'token' || event.key === 'userType') {
-        checkAuthStatus();
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    // Cleanup listeners on component unmount
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userType');
-    setIsAuthenticated(false);
-    setUserType('');
-  };
+  const { isAuthenticated, userType, logout } = useAuth();
 
   return (
     <header className="bg-gradient-to-r from-blue-500 via-primary to-green-500 text-white shadow-lg sticky top-0 bg-opacity-80 backdrop-blur-md transition-all duration-300 z-50">
@@ -119,7 +86,7 @@ function Header() {
                 </li>
                 <li>
                   <button
-                    onClick={handleLogout}
+                    onClick={logout}
                     className="hover:text-yellow-300 hover:scale-105 transition-all duration-300 ease-in-out"
                   >
                     Logout
