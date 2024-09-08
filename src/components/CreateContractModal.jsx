@@ -1,3 +1,4 @@
+// CreateContractModal.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useContract } from '@/context/ContractContext';
@@ -7,13 +8,40 @@ const CreateContractModal = ({ onClose }) => {
   const { contractData } = useContract();
   const [formData, setFormData] = useState({
     farmerId: contractData ? contractData._id : '',
-    buyerId: '',
+    buyerId: '', // Will be set after fetching the buyer profile
     cropType: '',
     quantity: '',
-    startDate: '',  // Added
-    endDate: '',    // Added
-    pricePerUnit: '', // Added
+    startDate: '',
+    endDate: '',
+    pricePerUnit: '',
   });
+
+  // Fetch current buyer profile on component mount
+  useEffect(() => {
+    const fetchBuyerProfile = async () => {
+      try {
+        const token = localStorage.getItem('token'); // Ensure the token is correctly retrieved
+        const response = await axios.get('/api/buyers/me', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Use the JWT token for authentication
+          },
+        });
+
+        if (response.status === 200) {
+          const buyer = response.data;
+          setFormData((prev) => ({
+            ...prev,
+            buyerId: buyer._id, // Set the buyerId in formData
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching buyer profile:', error);
+        toast.error('Unable to fetch buyer profile');
+      }
+    };
+
+    fetchBuyerProfile();
+  }, []);
 
   useEffect(() => {
     if (contractData) {
@@ -34,15 +62,21 @@ const CreateContractModal = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Debugging: Check the form data before making the API call
+    console.log('Submitting form data:', formData);
+  
     try {
-      await axios.post('/api/contracts', formData);
+      const response = await axios.post('/api/contracts', formData);
       toast.success('Contract created successfully');
       onClose();
     } catch (error) {
+      // Error details for debugging
+      console.error('Error creating contract:', error.response?.data || error.message);
       toast.error('Error creating contract');
-      console.error('Error creating contract:', error);
     }
   };
+  
 
   if (!contractData) {
     return null;

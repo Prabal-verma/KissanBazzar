@@ -25,6 +25,8 @@ const SignInPage = () => {
 
       // Use the context's login function to set the token and update state
       login(response.data.token);
+      localStorage.setItem('userType', 'farmer'); // Set user type to 'farmer'
+
 
       // Redirect to the dashboard
       router.push('/farmers/dashboard');

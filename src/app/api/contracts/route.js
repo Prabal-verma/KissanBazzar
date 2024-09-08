@@ -1,10 +1,18 @@
 import dbConnect from '@/utils/dbConnect';
-import Contract from '@/models/Contract'; // Adjust path if needed
+import Contract from '@/models/Contract'; // Adjust the path if needed
 
 export async function POST(req) {
   try {
     await dbConnect();
-    const { buyerId, farmerId, contractDetails } = await req.json();
+    const {
+      buyerId,
+      farmerId,
+      cropType,
+      quantity,
+      startDate,
+      endDate,
+      pricePerUnit,
+    } = await req.json();
 
     // Validate buyerId
     // if (!buyerId || !/^[0-9a-fA-F]{24}$/.test(buyerId)) {
@@ -14,7 +22,11 @@ export async function POST(req) {
     const contract = new Contract({
       buyerId,
       farmerId,
-      contractDetails,
+      cropType,
+      quantity,
+      startDate,
+      endDate,
+      pricePerUnit,
     });
 
     await contract.save();

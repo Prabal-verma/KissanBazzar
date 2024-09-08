@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'; // Import Image from next/image
+
 
 function FarmerProfile() {
   const [farmer, setFarmer] = useState(null);
@@ -55,9 +57,11 @@ function FarmerProfile() {
           <h1 className="text-3xl font-semibold text-text mb-4">Farmer Profile</h1>
           <div className="flex flex-col md:flex-row md:items-center md:space-x-6">
             <div className="md:w-1/3 mb-6 md:mb-0">
-              <img 
-                src={farmer?.profileImage || 'https://via.placeholder.com/150'} 
+            <Image 
+                src={farmer?.profileImage || '/placeholder.png'} // Adjust placeholder path if needed
                 alt="Farmer Profile" 
+                width={150}
+                height={150}
                 className="w-full h-auto rounded-full shadow-md"
               />
             </div>

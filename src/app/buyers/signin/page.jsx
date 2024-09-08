@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../../../context/AuthContext'; // Import useAuth
 
 const SignInBuyer = () => {
+  const { login } = useAuth(); // Get the login function from the context
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -20,8 +22,9 @@ const SignInBuyer = () => {
         password,
       });
 
-      // Store the token (e.g., in local storage)
-      localStorage.setItem('token', response.data.token);
+      // Use the context's login function to set the token and update state
+      login(response.data.token); // Set user type to 'buyer'
+      localStorage.setItem('userType', 'buyer');
 
       // Redirect to the dashboard or any other page
       router.push('/buyers/dashboard');
