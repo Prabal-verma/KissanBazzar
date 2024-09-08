@@ -15,9 +15,9 @@ export async function POST(req) {
     } = await req.json();
 
     // Validate buyerId
-    if (!buyerId || !/^[0-9a-fA-F]{24}$/.test(buyerId)) {
-      return new Response(JSON.stringify({ error: 'Invalid buyerId' }), { status: 400 });
-    }
+    // if (!buyerId || !/^[0-9a-fA-F]{24}$/.test(buyerId)) {
+    //   return new Response(JSON.stringify({ error: 'Invalid buyerId' }), { status: 400 });
+    // }
 
     const contract = new Contract({
       buyerId,

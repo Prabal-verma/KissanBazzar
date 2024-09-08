@@ -7,9 +7,9 @@ const ContractSchema = new mongoose.Schema({
     required: true,
   },
   buyerId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Buyer',
-    required: true,
+    type: String,
+    
+    
   },
   cropType: {
     type: String,

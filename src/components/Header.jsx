@@ -79,6 +79,7 @@ function Header() {
   };
 
   return (
+
     <header className="bg-gradient-to-r from-blue-500 via-primary to-green-500 text-white shadow-lg sticky top-0 bg-opacity-80 backdrop-blur-md transition-all duration-300 z-50">
       <div className="container mx-auto flex justify-between items-center p-4 md:p-6 lg:p-8">
         <Link href="/">
