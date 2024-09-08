@@ -46,4 +46,11 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .gradient-text {
+    background: linear-gradient(to right, #4865f9, #06e2b6); /* Adjust colors as needed */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
+
