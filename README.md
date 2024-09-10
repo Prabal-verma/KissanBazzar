@@ -1,141 +1,107 @@
-Sure! Here’s a detailed README for your project. Feel free to adjust any specifics according to your project's actual details.
 
----
 
-# Assured Contract Farming System
+# KissanBazaar: Assured Contract Farming System (PS-1640)
 
-## Overview
+KissanBazaar is a digital platform designed to facilitate secure and transparent contract farming between farmers and buyers. The platform aims to provide farmers with stable market access and ensure buyers receive high-quality produce through well-defined contracts. This README outlines the project details, team information, tech stack, key features, and instructions to run the project locally.
 
-The Assured Contract Farming System is a comprehensive platform designed to facilitate assured contract farming agreements between farmers and buyers. The system aims to ensure stable market access and income stability for farmers. It provides an intuitive interface for both farmers and buyers to manage their contracts, profiles, and settings.
+## Team Details
 
-## Features
+**Team Name:** NERD NINZAS
 
-- **User Authentication:** Secure sign-in and sign-up for both farmers and buyers.
-- **Farmer Dashboard:** View and manage contracts, profile, and settings.
-- **Buyer Dashboard:** View and manage contracts, profile, and settings.
-- **Contract Management:** Create, view, and manage contracts between farmers and buyers.
-- **Profile Management:** Update and manage user profiles and settings.
-- **Market Access:** Buyers can explore and access available markets.
+**Team Leader:** [@Prabal-verma](https://github.com/Prabal-verma)
 
-## Technology Stack
+**Team Members:**
+
+- **Prabal Verma** - 2022UIC3672 - [@Prabal-verma](https://github.com/Prabal-verma)
+- **Vijay Pratap Singh** - 2022UIC3664 - [@Vijaysingh1621](https://github.com/Vijaysingh1621)
+- **Tanya Sharma** - 2022UEC4145 - [@tanyasharma1283](https://github.com/tanyasharma1283)
+- **Aayush Goyal** - 2022UIC3673 - [@Aayush8212](https://github.com/aayush8212)
+- **Ankita** - 2022UEC2532 - [@CodingHerWay](https://github.com/codingherway)
+- **Vishal** - 2022UIC3613 - [@Vishukaneki](https://github.com/Vishukaneki)
+
+## Project Links
+
+- **Final Presentation:** [View Presentation](./SIH2024_NERD_NINZAS_1640.pptx%20(3).pdf)
+- **Live Deployment:** [KissanBazzaar Live](https://kissanbazzaar.vercel.app/)
+- **Video Demonstration:** [Watch Video](https://youtu.be/IgH0i55augI)
+- **Source Code:** [GitHub Repository](https://github.com/Prabal-verma/KissanBazaar)
+- **Figma Design:** [Figma Link](https://www.figma.com/design/eLWsRVWw67DpF6JNaOu7vT/Kissanbazzar.com?t=WOjXDNtBFDWUhuh7-1)
+- **Architecture Diagram:** [View Diagram](https://app.eraser.io/workspace/9tp9HmW6gtxPN4jDRS3Q)
+
+## Project Overview
+
+KissanBazaar aims to address the common challenges in contract farming, such as unreliable market access, lack of transparency, and time-consuming negotiations. It provides a digital solution where farmers and buyers can create legally binding contracts, ensuring secure transactions and stable incomes.
+
+### Problem Solved by KissanBazaar
+
+1. **Uncertain Market Access:** KissanBazaar connects farmers with verified buyers, reducing the risk of unpredictable sales and income.
+2. **Lack of Trust and Transparency:** The platform ensures all contract terms are clearly defined, reducing disputes.
+3. **Time-Consuming Negotiations:** Guided workflows streamline the creation and negotiation of contracts, saving time for both parties.
+4. **Limited Market Information:** Farmers can access market data, helping them make informed decisions about their crops and sales.
+
+## Tasks Completed
+
+1. **Contract Management:** Developed features to create, manage, and track contracts between farmers and buyers.
+2. **User Authentication:** Implemented authentication for different user roles, including farmers and buyers.
+3. **Database Integration:** Used MongoDB for data storage, managing user information, contract details, and transactions.
+4. **Responsive UI:** Built a responsive interface using Next.js and Tailwind CSS for an optimal user experience on all devices.
+5. **API Development:** Created APIs for handling contract operations, authentication, and data retrieval.
+6. **Testing and Deployment:** Conducted thorough testing and deployed the platform using Vercel for seamless access.
+
+## Tech Stack
 
 - **Frontend:** Next.js, React, Tailwind CSS
-- **Backend:** Node.js, Express
-- **Database:** MongoDB
-- **Authentication:** Custom token-based authentication
-- **Storage:** Firebase Storage (for images and files)
+- **Backend:** Node.js, Express, MongoDB, Mongoose
+- **Authentication:** Custom authentication solution with JWT
+- **Deployment:** Vercel
+- **Design:** Figma for UI/UX design
 
-## Installation
+## Key Features
 
-### Prerequisites
+- **Contract Creation and Management:** Easy-to-use interface for creating and managing farming contracts.
+- **User Authentication:** Secure login for farmers and buyers with role-based access control.
+- **Dashboard:** Provides a centralized view of ongoing contracts, pending actions, and important notifications.
+- **Scalable Architecture:** Built with scalability in mind, allowing for future expansion and integration with other services.
+- **Real-Time Updates:** Live updates on contract status changes, notifications, and alerts.
 
-Ensure you have the following installed:
-- Node.js (v14 or later)
-- npm or yarn
-- MongoDB
+## Steps to Run the Project Locally
 
-### Clone the Repository
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Prabal-verma/KissanBazaar
+   cd KissanBazaar
+   ```
 
-```bash
-git clone https://github.com/your-username/assured-contract-farming-system.git
-cd assured-contract-farming-system
-```
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
-### Install Dependencies
+3. **Setup Environment Variables:**
+   Create a `.env` file in the root directory with the following:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   ```
 
-```bash
-npm install
-```
+4. **Run the Application:**
+   ```bash
+   npm run dev
+   ```
 
-or
+5. **Access the Application:**
+   Open your browser and go to `http://localhost:3000`.
 
-```bash
-yarn install
-```
+## Future Plans
 
-### Configure Environment Variables
-
-Create a `.env.local` file in the root directory and add the following environment variables:
-
-```bash
-MONGODB_URI=your-mongodb-uri
-FIREBASE_STORAGE_BUCKET=your-firebase-storage-bucket
-SECRET_KEY=your-secret-key
-```
-
-### Run the Development Server
-
-```bash
-npm run dev
-```
-
-or
-
-```bash
-yarn dev
-```
-
-The application will be available at `http://localhost:3000`.
-
-## Folder Structure
-
-- **`/src`**: Source code of the project
-  - **`/components`**: React components
-  - **`/context`**: Context providers (e.g., `AuthContext`)
-  - **`/pages`**: Next.js pages
-  - **`/styles`**: Tailwind CSS styles
-- **`/public`**: Static assets like images
-- **`/api`**: Backend API routes
-
-## Usage
-
-### Authentication
-
-- **Sign In:** Users can sign in via the `/farmers/signin` or `/buyers/signin` pages.
-- **Sign Up:** New users can register via the `/farmers/register` or `/buyers/register` pages.
-
-### User Dashboards
-
-- **Farmer Dashboard:** Accessible at `/farmers/dashboard`. Allows farmers to manage contracts, view profile, and access settings.
-- **Buyer Dashboard:** Accessible at `/buyers/dashboard`. Allows buyers to manage contracts, view profile, and access settings.
-
-### Contract Management
-
-- **Create Contract:** Farmers and buyers can create contracts through the dashboard interfaces.
-- **Manage Contracts:** Users can view and manage their contracts from their respective dashboards.
-
-## API Endpoints
-
-### Farmers
-
-- **POST /api/farmers/signin**: Sign in for farmers
-- **POST /api/farmers/register**: Register a new farmer
-- **GET /api/farmers/dashboard**: Fetch farmer dashboard data
-
-### Buyers
-
-- **POST /api/buyers/signin**: Sign in for buyers
-- **POST /api/buyers/register**: Register a new buyer
-- **GET /api/buyers/dashboard**: Fetch buyer dashboard data
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Create a new Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **Integration with Payment Gateways:** To enable secure transactions directly through the platform.
+- **Advanced Analytics:** Provide insights into market trends, crop demand, and pricing for farmers.
+- **Mobile Application:** Develop a mobile version of the platform for better accessibility.
 
 ## Contact
 
-For any questions or feedback, please contact:
-- **Email:** dev@prabalverma.me
-- **GitHub:** [Prabal-Verma](https://github.com/Prabal-verma/KissanBazzar)
+For any queries or further information, please contact the team leader: [@Prabal-verma](https://github.com/Prabal-verma) (prableverma@gmail.com)
 
 ---
 
-Feel free to customize this template further based on your project’s specific needs!
+Feel free to adjust or expand further as needed!
