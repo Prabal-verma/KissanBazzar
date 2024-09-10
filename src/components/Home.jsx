@@ -57,21 +57,21 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-8 bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center py-8 bg-gray-200">
       {/* Hero Section with Carousel and News Sections */}
       <section className="relative w-full max-w-screen-xl mx-auto flex flex-col md:flex-row gap-8">
         {/* Left News Section */}
-        <div className="w-full md:w-1/4 bg-gradient-to-b from-blue-50 to-blue-100 p-4 rounded-lg shadow-lg">
+        <div className="hidden md:w-1/4 md:block bg-gradient-to-b from-blue-50 to-blue-100 p-4 rounded-lg shadow-lg">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Latest News</h2>
           <div className="space-y-4">
-            {news.slice(0, 2).map((article, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg shadow-md">
-                <img src={article.urlToImage} alt={article.title} className="w-full h-32 object-cover mb-2 rounded" />
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">{article.title}</h3>
-                <p className="text-gray-700 mb-2">{article.description}</p>
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Read more</a>
+            {news.length > 0 && (
+              <div className="bg-white p-4 rounded-lg shadow-md">
+                <img src={news[0].urlToImage} alt={news[0].title} className="w-full h-32 object-cover mb-2 rounded" />
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">{news[0].title}</h3>
+                <p className="text-gray-700 mb-2">{news[0].description}</p>
+                <a href={news[0].url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Read more</a>
               </div>
-            ))}
+            )}
           </div>
         </div>
 
@@ -89,7 +89,7 @@ function Home() {
             </div>
           </Carousel>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4 py-8 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent rounded-lg">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">Welcome to KisanBazaar</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">Welcome to KissanBazaar</h1>
             <p className="text-lg md:text-xl text-white mb-8">
               Connecting farmers and buyers to ensure stable market access and fair trade practices.
             </p>
@@ -104,17 +104,17 @@ function Home() {
         </div>
 
         {/* Right News Section */}
-        <div className="w-full md:w-1/4 bg-gradient-to-b from-purple-50 to-purple-100 p-4 rounded-lg shadow-lg">
+        <div className=" md:w-1/4 md:block bg-gradient-to-b from-purple-50 to-purple-100 p-4 rounded-lg shadow-lg">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">More News</h2>
           <div className="space-y-4">
-            {news.slice(2, 4).map((article, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg shadow-md">
-                <img src={article.urlToImage} alt={article.title} className="w-full h-32 object-cover mb-2 rounded" />
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">{article.title}</h3>
-                <p className="text-gray-700 mb-2">{article.description}</p>
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Read more</a>
+            {news.length > 1 && (
+              <div className="bg-white p-4 rounded-lg shadow-md">
+                <img src={news[1].urlToImage} alt={news[1].title} className="w-full h-32 object-cover mb-2 rounded" />
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">{news[1].title}</h3>
+                <p className="text-gray-700 mb-2">{news[1].description}</p>
+                <a href={news[1].url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Read more</a>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
