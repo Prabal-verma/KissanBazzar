@@ -47,7 +47,7 @@ function Header() {
           </li>
           <li>
             <Link
-              href="/contracts"
+              href="/farmers/myContracts"
               className="flex items-center hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 ease-in-out"
             >
               <FiFileText className="mr-2" /> My Contracts

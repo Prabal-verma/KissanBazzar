@@ -62,17 +62,17 @@ const FarmerDashboard = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="block py-2 px-4 rounded hover:bg-green-100 text-gray-800">
+                <a href="/farmers/myContracts" className="block py-2 px-4 rounded hover:bg-green-100 text-gray-800">
                   My Contracts
                 </a>
               </li>
               <li>
-                <a href="#" className="block py-2 px-4 rounded hover:bg-green-100 text-gray-800">
+                <a href="/farmers/profile" className="block py-2 px-4 rounded hover:bg-green-100 text-gray-800">
                   Profile
                 </a>
               </li>
               <li>
-                <a href="#" className="block py-2 px-4 rounded hover:bg-green-100 text-gray-800">
+                <a href="/settings" className="block py-2 px-4 rounded hover:bg-green-100 text-gray-800">
                   Settings
                 </a>
               </li>

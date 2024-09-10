@@ -62,7 +62,7 @@ const BuyerDashboard = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="block py-2 px-4 rounded hover:bg-blue-100 text-gray-800">
+                <a href="/buyers/myContracts" className="block py-2 px-4 rounded hover:bg-blue-100 text-gray-800">
                   My Contracts
                 </a>
               </li>
@@ -72,7 +72,7 @@ const BuyerDashboard = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="block py-2 px-4 rounded hover:bg-blue-100 text-gray-800">
+                <a href="/settings" className="block py-2 px-4 rounded hover:bg-blue-100 text-gray-800">
                   Settings
                 </a>
               </li>
