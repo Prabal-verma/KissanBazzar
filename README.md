@@ -68,7 +68,7 @@ KissanBazaar aims to address the common challenges in contract farming, such as 
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/Prabal-verma/KissanBazaar
+   git clone https://github.com/Prabal-verma/KissanBazzaar
    cd KissanBazaar
    ```
 
