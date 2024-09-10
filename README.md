@@ -22,7 +22,7 @@ KissanBazaar is a digital platform designed to facilitate secure and transparent
 ## Project Links
 
 - **Final Presentation:** [View Presentation](./SIH2024_NERD_NINZAS_1640.pptx%20(3).pdf)
-- **Live Deployment:** [KissanBazzaar Live](https://kissanbazzaar.vercel.app/)
+- **Live Deployment:** [KissanBazzaar Live](https://kissanbazzar.vercel.app/)
 - **Video Demonstration:** [Watch Video](https://www.youtube.com/watch?v=05z0Yzobyh0)
 - **Source Code:** [GitHub Repository](https://github.com/Prabal-verma/KissanBazaar)
 - **Figma Design:** [Figma Link](https://www.figma.com/design/eLWsRVWw67DpF6JNaOu7vT/Kissanbazzar.com?t=WOjXDNtBFDWUhuh7-1)
