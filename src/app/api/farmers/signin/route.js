@@ -1,7 +1,7 @@
 // src/app/api/farmers/signin/route.js
 import dbConnect from '../../../../utils/dbConnect';
 import Farmer from '../../../../models/Farmer';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'; // Use JWT for authentication tokens
 
 // Named export for the POST method

@@ -1,7 +1,7 @@
 // src/app/api/farmers/register/route.js
 import dbConnect from '../../../../utils/dbConnect';
 import Farmer from '@/models/Farmer'; // Ensure the path is correct based on your structure
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export async function POST(req) {
   await dbConnect();

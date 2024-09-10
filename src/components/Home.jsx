@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image'; // Import the Image component
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel CSS
 
@@ -66,10 +67,18 @@ function Home() {
           <div className="space-y-4">
             {news.length > 0 && (
               <div className="bg-white p-4 rounded-lg shadow-md">
-                <img src={news[0].urlToImage} alt={news[0].title} className="w-full h-32 object-cover mb-2 rounded" />
+                <Image
+                  src={news[0].urlToImage || '/default-image.jpg'} // Fallback image in case of missing URL
+                  alt={news[0].title}
+                  width={400}
+                  height={200}
+                  className="object-cover mb-2 rounded"
+                />
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">{news[0].title}</h3>
                 <p className="text-gray-700 mb-2">{news[0].description}</p>
-                <a href={news[0].url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Read more</a>
+                <a href={news[0].url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                  Read more
+                </a>
               </div>
             )}
           </div>
@@ -79,13 +88,34 @@ function Home() {
         <div className="w-full md:w-1/2 relative bg-gray-300 rounded-lg overflow-hidden">
           <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
             <div>
-              <img src="/kissan_background.jpg" alt="Farmer 1" className="object-cover w-full h-[50vh] md:h-[60vh] lg:h-[70vh]" />
+              <Image
+                src="/kissan_background.jpg"
+                alt="Farmer 1"
+                layout="responsive"
+                width={800}
+                height={450}
+                className="object-cover"
+              />
             </div>
             <div>
-              <img src="/kissan_image1.jpg" alt="Farmer 2" className="object-cover w-full h-[50vh] md:h-[60vh] lg:h-[70vh]" />
+              <Image
+                src="/kissan_image1.jpg"
+                alt="Farmer 2"
+                layout="responsive"
+                width={800}
+                height={450}
+                className="object-cover"
+              />
             </div>
             <div>
-              <img src="/kissan_image3.jpg" alt="Farmer 3" className="object-cover w-full h-[50vh] md:h-[60vh] lg:h-[70vh]" />
+              <Image
+                src="/kissan_image3.jpg"
+                alt="Farmer 3"
+                layout="responsive"
+                width={800}
+                height={450}
+                className="object-cover"
+              />
             </div>
           </Carousel>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4 py-8 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent rounded-lg">
@@ -109,10 +139,18 @@ function Home() {
           <div className="space-y-4">
             {news.length > 1 && (
               <div className="bg-white p-4 rounded-lg shadow-md">
-                <img src={news[1].urlToImage} alt={news[1].title} className="w-full h-32 object-cover mb-2 rounded" />
+                <Image
+                  src={news[1].urlToImage || '/default-image.jpg'} // Fallback image in case of missing URL
+                  alt={news[1].title}
+                  width={400}
+                  height={200}
+                  className="object-cover mb-2 rounded"
+                />
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">{news[1].title}</h3>
                 <p className="text-gray-700 mb-2">{news[1].description}</p>
-                <a href={news[1].url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Read more</a>
+                <a href={news[1].url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                  Read more
+                </a>
               </div>
             )}
           </div>
@@ -143,26 +181,23 @@ function Home() {
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Secure and Reliable</h3>
-            <p className="text-gray-700">Our platform ensures secure transactions and reliable contract management.</p>
+            <p className="text-gray-700">
+              Our platform ensures secure transactions and reliable contract management.
+            </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Easy to Use</h3>
-            <p className="text-gray-700">User-friendly interface designed to simplify the process of managing contracts and payments.</p>
+            <p className="text-gray-700">
+              User-friendly interface designed to simplify the process of managing contracts and payments.
+            </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">24/7 Support</h3>
-            <p className="text-gray-700">Get help anytime with our dedicated support team available around the clock.</p>
+            <p className="text-gray-700">
+              Get help anytime with our dedicated support team available around the clock.
+            </p>
           </div>
         </div>
-      </section>
-
-      <section className="text-center px-4 mb-8">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6">Ready to Get Started?</h2>
-        <Link href="/get-started">
-          <button className="bg-gradient-to-r from-teal-500 to-green-500 text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-80 transition-opacity duration-300">
-            Join Us Today
-          </button>
-        </Link>
       </section>
     </div>
   );
