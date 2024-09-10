@@ -63,7 +63,7 @@ function Home() {
       </section>
 
       {/* Hero Section */}
-      <section className="text-center mb-12 px-4 md:px-6 lg:px-8 z-20">
+      <section className="text-center mb-12 px-4 md:px-6 lg:px-8 z-20 ">
         <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">Welcome to KisanBazaar</h1>
         <p className="text-lg md:text-xl text-white mb-8">
           Connecting farmers and buyers to ensure stable market access and fair trade practices.
